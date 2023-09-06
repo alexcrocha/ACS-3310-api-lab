@@ -27,7 +27,7 @@
     <script>
       // ------------------------------------------------------
       // Developer Code
-
+      import { getWeather } from './weather.js'
       // Get Element refererences
       const tempEl = document.getElementById('temp')
       const descEl = document.getElementById('desc')
@@ -40,22 +40,6 @@
         const zip = zipInput.value
         getWeather(zip)
       })
-
-      // Functions
-    function getWeather(zip) {
-      // Replace this with your own API key!
-      const apiKey = '467355df4c808dd6134a3b64e9ace282'
-      const units = 'imperial'
-      const path = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apiKey}&units=${units}`
-      fetch(path)
-        .then(res => res.json())
-        .then(json => {
-          tempEl.innerHTML = json.main.temp
-          descEl.innerHTML = json.weather[0].description
-        })
-        .catch(err => console.log(err.message))
-    }
-
     </script>
   </body>
 </html>
