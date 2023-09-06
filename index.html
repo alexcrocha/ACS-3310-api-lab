@@ -39,9 +39,9 @@
       getWeather(apiKey, zip, updateUI)
     })
 
-    const updateUI = (data) => {
-      tempEl.innerHTML = data.main.temp
-      descEl.innerHTML = data.weather[0].description
+    const updateUI = ({ temp, description }) => {
+      tempEl.innerHTML = temp
+      descEl.innerHTML = description
     }
 
   </script>
