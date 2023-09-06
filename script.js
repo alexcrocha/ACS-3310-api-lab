@@ -1,5 +1,8 @@
+const tempEl = document.getElementById('temp')
+const descEl = document.getElementById('desc')
+
 // Functions
-export function getWeather(zip) {
+export function getWeather(apiKey, zip) {
   // Replace this with your own API key!
   const units = 'imperial'
   const path = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apiKey}&units=${units}`
