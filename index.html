@@ -15,8 +15,8 @@
       <!-- description -->
     </p>
     <form id="form">
-      <input id="zip" type="number" placeholder="zip code" title="Please Enter a valid Zip Code"
-        pattern="^\d{5}(?:[-\s]\d{4})?$">
+      <input id="userInput" placeholder="City, Zip, or Geo location"
+        title="Please Enter a valid City Name, Zip Code, or Geo Location">
       <button type="submit">Search</button>
       <div class="units">
         <button id="imperial" value="imperial" class="active">ºF</button>
@@ -29,32 +29,32 @@
     // ------------------------------------------------------
     // Developer Code
     import { getWeather } from './script.js'
-    // Get Element refererences
+
     const tempEl = document.getElementById('temp')
     const descEl = document.getElementById('desc')
     const formEl = document.getElementById('form')
     const apiKey = '467355df4c808dd6134a3b64e9ace282'
-    const zipInput = document.getElementById('zip')
+    const userInput = document.getElementById('userInput')
     const imperialEl = document.getElementById('imperial')
     const metricEl = document.getElementById('metric')
     let units = 'imperial'
-    let zip = zipInput.value
+    let input = userInput.value
 
     // Define event listeners
     formEl.addEventListener('submit', (e) => {
       e.preventDefault()
-      zip = zipInput.value
-      getWeather(apiKey, zip, units, updateUI)
+      input = userInput.value
+      getWeather(apiKey, input, units, updateUI)
     })
 
     imperialEl.addEventListener('click', (e) => {
       handleUnits('imperial')
-      getWeather(apiKey, zip, units, updateUI)
+      getWeather(apiKey, input, units, updateUI)
     })
 
     metricEl.addEventListener('click', (e) => {
       handleUnits('metric')
-      getWeather(apiKey, zip, units, updateUI)
+      getWeather(apiKey, input, units, updateUI)
     })
 
     const handleUnits = (newUnit) => {
