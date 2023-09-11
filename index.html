@@ -18,6 +18,10 @@
       <input id="zip" type="number" placeholder="zip code" title="Please Enter a valid Zip Code"
         pattern="^\d{5}(?:[-\s]\d{4})?$">
       <button type="submit">Search</button>
+      <div class="units">
+        <button id="imperial" value="imperial" class="active">ºF</button>
+        <button id="metric" value="metric">ºC</button>
+      </div>
     </form>
   </div>
 
@@ -31,13 +35,33 @@
     const formEl = document.getElementById('form')
     const apiKey = '467355df4c808dd6134a3b64e9ace282'
     const zipInput = document.getElementById('zip')
+    const imperialEl = document.getElementById('imperial')
+    const metricEl = document.getElementById('metric')
+    let units = 'imperial'
+    let zip = zipInput.value
 
     // Define event listeners
     formEl.addEventListener('submit', (e) => {
       e.preventDefault()
-      const zip = zipInput.value
-      getWeather(apiKey, zip, updateUI)
+      zip = zipInput.value
+      getWeather(apiKey, zip, units, updateUI)
     })
+
+    imperialEl.addEventListener('click', (e) => {
+      handleUnits('imperial')
+      getWeather(apiKey, zip, units, updateUI)
+    })
+
+    metricEl.addEventListener('click', (e) => {
+      handleUnits('metric')
+      getWeather(apiKey, zip, units, updateUI)
+    })
+
+    const handleUnits = (newUnit) => {
+      units = newUnit
+      imperialEl.classList.toggle('active', units === 'imperial');
+      metricEl.classList.toggle('active', units === 'metric');
+    }
 
     const updateUI = ({ temp, description }) => {
       tempEl.innerHTML = temp

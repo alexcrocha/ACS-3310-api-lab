@@ -1,5 +1,4 @@
-export async function getWeather(apiKey, zip, updateUI) {
-  const units = 'imperial';
+export async function getWeather(apiKey, zip, units, updateUI) {
   const path = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apiKey}&units=${units}`;
   try {
     const res = await fetch(path);
